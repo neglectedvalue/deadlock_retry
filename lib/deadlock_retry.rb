@@ -20,7 +20,8 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 module DeadlockRetry
   mattr_accessor :maximum_retries_on_deadlock
-  self.maximum_retries_on_deadlock = MAXIMUM_RETRIES_ON_DEADLOCK || 3
+  self.maximum_retries_on_deadlock =
+    defined?(MAXIMUM_RETRIES_ON_DEADLOCK) ? MAXIMUM_RETRIES_ON_DEADLOCK : 3
 
   def self.included(base)
     base.extend(ClassMethods)
